@@ -17,8 +17,18 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Make gradlew executable
+    # Step 1: Remove any potentially corrupt gradlew file
+    - name: Clean up old wrapper
+      run: rm -f gradlew
+
+    # Step 2: Generate fresh wrapper files
+    - name: Setup Gradle
+      run: gradle wrapper --gradle-version 8.4
+
+    # Step 3: Ensure execution permissions
+    - name: Grant execute permission
       run: chmod +x gradlew
 
+    # Step 4: Run build
     - name: Build with Gradle
       run: ./gradlew assembleDebug --info
