@@ -17,13 +17,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Grant Permission
-      run: chmod +x gradlew || echo "gradlew not found, will generate"
-
-    - name: Setup Gradle
-      run: |
-        gradle wrapper --gradle-version 8.4
-        chmod +x gradlew
+    - name: Make gradlew executable
+      run: chmod +x gradlew
 
     - name: Build with Gradle
       run: ./gradlew assembleDebug --info
