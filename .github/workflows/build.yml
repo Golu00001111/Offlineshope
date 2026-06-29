@@ -17,18 +17,18 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    # Step 1: Remove any potentially corrupt gradlew file
+    # Purani files ko hata dein taaki conflict na ho
     - name: Clean up old wrapper
       run: rm -f gradlew
 
-    # Step 2: Generate fresh wrapper files
+    # Gradle wrapper ko naye siras se generate karein
     - name: Setup Gradle
       run: gradle wrapper --gradle-version 8.4
 
-    # Step 3: Ensure execution permissions
+    # File ko executable banayein
     - name: Grant execute permission
       run: chmod +x gradlew
 
-    # Step 4: Run build
+    # Build run karein
     - name: Build with Gradle
       run: ./gradlew assembleDebug --info
